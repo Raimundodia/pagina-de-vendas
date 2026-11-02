@@ -4,56 +4,497 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ServifyPro - Transforme Orçamentos em Vendas no WhatsApp</title>
+  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
+  <!-- FontAwesome 6 CDN -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              400: '#34d399',
+              500: '#10b981',
+              600: '#059669',
+              700: '#047857',
+              900: '#064e3b',
+            },
+            dark: {
+              950: '#070a0f',
+              900: '#0b0f17',
+              800: '#111827',
+              700: '#1f2937',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap');
     body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #0b0f17; color: #f8fafc; }
     .bg-emerald-gradient { background: linear-gradient(135deg, #10b981 0%, #059669 100%); }
     .text-emerald-gradient { background: linear-gradient(135deg, #34d399 0%, #10b981 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-    .glass-panel { background: rgba(17, 24, 39, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.08); }
-    .glow-emerald { box-shadow: 0 0 40px rgba(16, 185, 129, 0.25); }
+    .glass-panel { background: rgba(17, 24, 39, 0.7); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.08); }
+    .glow-emerald { box-shadow: 0 0 50px -10px rgba(16, 185, 129, 0.3); }
+    .glow-button { box-shadow: 0 0 25px rgba(16, 185, 129, 0.5); }
+    .glow-button:hover { box-shadow: 0 0 35px rgba(16, 185, 129, 0.8); }
   </style>
 </head>
-<body class="antialiased selection:bg-emerald-500 selection:text-slate-950">
+<body class="antialiased selection:bg-emerald-500 selection:text-slate-950 overflow-x-hidden">
 
-  <!-- Header Fixo -->
-  <header class="fixed top-0 w-full z-50 glass-panel border-b border-slate-800/80">
+  <!-- TOP BAR DE URGÊNCIA -->
+  <div class="bg-gradient-to-r from-emerald-700 via-emerald-600 to-teal-700 text-white text-xs sm:text-sm py-2 px-4 text-center font-bold flex items-center justify-center gap-2 shadow-lg">
+    <span class="bg-white/20 text-white text-[10px] uppercase tracking-widest px-2.5 py-0.5 rounded-full">LOTE PROMOCIONAL</span>
+    <span>Economize no 1º Ano de ServifyPro - Oferta por Tempo Limitado!</span>
+  </div>
+
+  <!-- 1. HEADER FIXO -->
+  <header class="sticky top-0 w-full z-50 glass-panel border-b border-slate-800/80">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
       <div class="flex items-center space-x-3">
         <div class="w-10 h-10 rounded-xl bg-emerald-gradient flex items-center justify-center text-slate-950 font-black text-xl shadow-lg">S</div>
         <span class="text-2xl font-black tracking-tight text-white">Servify<span class="text-emerald-400">Pro</span></span>
       </div>
-      <a href="https://pay.kiwify.com.br/hDqJYpx" target="_blank" rel="noopener noreferrer" class="bg-emerald-gradient hover:opacity-90 text-slate-950 font-bold px-6 py-2.5 rounded-xl transition-all duration-200 shadow-md flex items-center gap-2">
+      
+      <nav class="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-300">
+        <a href="#como-funciona" class="hover:text-emerald-400 transition-colors">Como Funciona</a>
+        <a href="#beneficios" class="hover:text-emerald-400 transition-colors">Benefícios</a>
+        <a href="#para-quem" class="hover:text-emerald-400 transition-colors">Para Quem É</a>
+        <a href="#depoimentos" class="hover:text-emerald-400 transition-colors">Depoimentos</a>
+        <a href="#planos" class="hover:text-emerald-400 transition-colors">Planos</a>
+      </nav>
+
+      <a href="https://pay.kiwify.com.br/hDqJYpx" target="_blank" rel="noopener noreferrer" class="bg-emerald-gradient hover:opacity-90 text-slate-950 font-extrabold px-6 py-2.5 rounded-xl transition-all duration-200 shadow-md flex items-center gap-2 text-sm">
         <span>Garantir Acesso</span>
         <i class="fa-solid fa-arrow-right text-xs"></i>
       </a>
     </div>
   </header>
 
-  <!-- Hero Section -->
-  <section class="pt-36 pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto text-center">
-    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-panel border-emerald-500/30 text-emerald-400 font-semibold text-sm mb-8">
-      <i class="fa-solid fa-bolt text-emerald-400"></i>
-      <span>Acelere seus Fechamentos no WhatsApp</span>
-    </div>
-    
-    <h1 class="text-4xl sm:text-6xl font-black text-white tracking-tight leading-tight max-w-4xl mx-auto mb-6">
-      Pare de Perder Serviços Criando Orçamentos Amadores em <span class="text-emerald-gradient">PDF ou Texto</span>
-    </h1>
-    
-    <p class="text-lg sm:text-xl text-slate-400 max-w-2xl mx-auto mb-10 leading-relaxed">
-      Crie propostas digitais profissionais em segundos direto pelo celular, passe autoridade total e receba a aprovação instantânea do seu cliente.
-    </p>
+  <!-- 2. HERO SECTION -->
+  <section class="relative pt-16 pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto text-center overflow-hidden">
+    <!-- Glow Background -->
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-emerald-500/10 rounded-full blur-[140px] pointer-events-none"></div>
 
-    <div class="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-md mx-auto mb-12">
-      <a href="https://pay.kiwify.com.br/hDqJYpx" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto bg-emerald-gradient hover:opacity-90 text-slate-950 font-black text-lg px-8 py-4 rounded-xl transition-all duration-200 shadow-xl glow-emerald flex items-center justify-center gap-3">
-        <span>QUERO ACESSAR AGORA</span>
-        <i class="fa-solid fa-arrow-right"></i>
-      </a>
+    <div class="relative z-10">
+      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-panel border-emerald-500/30 text-emerald-400 font-semibold text-xs sm:text-sm mb-8 animate-bounce">
+        <i class="fa-solid fa-bolt text-emerald-400"></i>
+        <span>Feche até 3x mais orçamentos pelo WhatsApp</span>
+      </div>
+      
+      <h1 class="text-4xl sm:text-6xl font-black text-white tracking-tight leading-tight max-w-4xl mx-auto mb-6">
+        Pare de Perder Vendas Mandando Orçamentos Amadores em <span class="text-emerald-gradient">PDF ou Texto</span>
+      </h1>
+      
+      <p class="text-base sm:text-xl text-slate-300 max-w-2xl mx-auto mb-10 leading-relaxed font-normal">
+        O **ServifyPro** permite criar propostas comerciais interativas em segundos direto pelo seu celular. Transmita autoridade de grande empresa e receba aprovações rápidas.
+      </p>
+
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-md mx-auto mb-10">
+        <a href="https://pay.kiwify.com.br/hDqJYpx" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto glow-button bg-emerald-gradient hover:opacity-90 text-slate-950 font-black text-lg px-8 py-4 rounded-xl transition-all duration-200 shadow-xl flex items-center justify-center gap-3">
+          <span>QUERO ACESSAR AGORA</span>
+          <i class="fa-solid fa-arrow-right"></i>
+        </a>
+      </div>
+
+      <!-- Selos de Segurança e Garantia -->
+      <div class="flex flex-wrap items-center justify-center gap-6 text-slate-400 text-xs sm:text-sm font-medium">
+        <span class="flex items-center gap-2"><i class="fa-solid fa-shield-halved text-emerald-400"></i> Garantia Incondicional de 7 Dias</span>
+        <span class="flex items-center gap-2"><i class="fa-solid fa-lock text-emerald-400"></i> Pagamento Seguro via Kiwify</span>
+        <span class="flex items-center gap-2"><i class="fa-solid fa-bolt text-emerald-400"></i> Acesso Imediato</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. SEÇÃO ANTES VS DEPOIS -->
+  <section class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-slate-800/60" id="como-funciona">
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <h2 class="text-xs font-bold uppercase tracking-widest text-emerald-400 mb-2">A Evolução do seu Negócio</h2>
+      <p class="text-3xl sm:text-4xl font-extrabold text-white">Como você faz hoje vs. Como fará com o ServifyPro</p>
     </div>
 
-    <!-- Garantia Sem Risco -->
-    <div class="flex items-center justify-center gap-6 text-slate-400 text-xs sm:text-sm">
-      <span class="flex items-center gap-2"><i class="fa-solid fa-shield-halved text-emerald-400"></i> Garantia Incondicional de 7 Dias</span>
-      <span class="flex items-center gap-2"><i class="fa-solid fa-lock text-emerald-400"></i> Pagamento Seguro
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <!-- Antes (Amador) -->
+      <div class="bg-red-950/20 border border-red-900/40 rounded-3xl p-8 relative">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-10 h-10 rounded-xl bg-red-500/10 text-red-400 flex items-center justify-center text-xl">
+            <i class="fa-solid fa-xmark"></i>
+          </div>
+          <h3 class="text-xl font-bold text-red-200">Como você faz hoje (Jeito Amador)</h3>
+        </div>
+        <ul class="space-y-4 text-slate-300 text-sm">
+          <li class="flex items-start gap-3">
+            <i class="fa-solid fa-minus text-red-400 mt-1"></i>
+            <span>Manda valores em texto digitado no WhatsApp que passam pouca credibilidade.</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <i class="fa-solid fa-minus text-red-400 mt-1"></i>
+            <span>Demora horas para montar PDFs travados e pesados no computador.</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <i class="fa-solid fa-minus text-red-400 mt-1"></i>
+            <span>Não sabe se o cliente visualizou o orçamento ou se fechou com o concorrente.</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <i class="fa-solid fa-minus text-red-400 mt-1"></i>
+            <span>Leve calotes no final da execução por falta de confirmação formal.</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Depois (ServifyPro) -->
+      <div class="glass-panel border-2 border-emerald-500/60 rounded-3xl p-8 relative glow-emerald">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-xl">
+            <i class="fa-solid fa-check"></i>
+          </div>
+          <h3 class="text-xl font-bold text-white">Com o ServifyPro (Profissional)</h3>
+        </div>
+        <ul class="space-y-4 text-slate-200 text-sm">
+          <li class="flex items-start gap-3">
+            <i class="fa-solid fa-check text-emerald-400 mt-1"></i>
+            <span>Link de orçamento interativo e visualmente impecável com a sua própria marca.</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <i class="fa-solid fa-check text-emerald-400 mt-1"></i>
+            <span>Crie e envie orçamentos em menos de 2 minutos direto do celular na frente do cliente.</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <i class="fa-solid fa-check text-emerald-400 mt-1"></i>
+            <span>Acompanhe o status de aprovação e mantenha o histórico 100% organizado.</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <i class="fa-solid fa-check text-emerald-400 mt-1"></i>
+            <span>Passe seriedade, cobre o valor justo e feche contratos rapidamente.</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. MOCKUP DO CELULAR E DEMONSTRAÇÃO -->
+  <section class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-slate-800/60">
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <h2 class="text-xs font-bold uppercase tracking-widest text-emerald-400 mb-2">Simplicidade & Elegância</h2>
+      <p class="text-3xl sm:text-4xl font-extrabold text-white">Veja como o seu cliente recebe a proposta</p>
+    </div>
+
+    <div class="max-w-md mx-auto glass-panel p-6 rounded-[2.5rem] border-2 border-slate-700 shadow-2xl relative glow-emerald">
+      <!-- Screen Notch -->
+      <div class="w-32 h-4 bg-slate-900 rounded-full mx-auto mb-6"></div>
+
+      <!-- App Header Mock -->
+      <div class="flex items-center justify-between pb-4 border-b border-slate-800 mb-4">
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-xs">SP</div>
+          <div class="text-left">
+            <p class="text-xs font-bold text-white">ServifyPro Orçamentos</p>
+            <p class="text-[10px] text-slate-400">Proposta #8492</p>
+          </div>
+        </div>
+        <span class="bg-emerald-500/20 text-emerald-400 text-[10px] font-bold px-2 py-0.5 rounded-full">AGUARDANDO</span>
+      </div>
+
+      <!-- Service Details -->
+      <div class="bg-slate-900/80 p-4 rounded-xl text-left space-y-3 text-xs mb-4">
+        <div class="flex justify-between">
+          <span class="text-slate-400">Cliente:</span>
+          <span class="text-slate-200 font-semibold">Carlos Eduardo</span>
+        </div>
+        <div class="flex justify-between">
+          <span class="text-slate-400">Serviço:</span>
+          <span class="text-slate-200 font-semibold">Instalação de Ar-Condicionado + Mão de Obra</span>
+        </div>
+        <div class="border-t border-slate-800 pt-2 flex justify-between font-bold text-sm">
+          <span class="text-slate-300">Total:</span>
+          <span class="text-emerald-400">R$ 650,00</span>
+        </div>
+      </div>
+
+      <!-- WhatsApp Button Mock -->
+      <div class="bg-emerald-600 text-slate-950 font-black py-3 rounded-xl text-center text-xs flex items-center justify-center gap-2 shadow-lg">
+        <i class="fa-brands fa-whatsapp text-base"></i>
+        <span>APROVAR ORÇAMENTO VIA WHATSAPP</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. FUNCIONALIDADES E BENEFÍCIOS -->
+  <section class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-slate-800/60" id="beneficios">
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <h2 class="text-xs font-bold uppercase tracking-widest text-emerald-400 mb-2">Recursos Práticos</h2>
+      <p class="text-3xl sm:text-4xl font-extrabold text-white">Tudo para facilitar o dia a dia do prestador</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div class="glass-panel p-6 rounded-2xl border border-slate-800">
+        <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-2xl mb-5">
+          <i class="fa-solid fa-mobile-screen-button"></i>
+        </div>
+        <h3 class="text-lg font-bold text-white mb-2">100% no Celular</h3>
+        <p class="text-slate-400 text-xs leading-relaxed">Crie orçamentos direto no canteiro de obras ou na casa do cliente sem precisar abrir computador.</p>
+      </div>
+
+      <div class="glass-panel p-6 rounded-2xl border border-slate-800">
+        <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-2xl mb-5">
+          <i class="fa-brands fa-whatsapp"></i>
+        </div>
+        <h3 class="text-lg font-bold text-white mb-2">Envio em 1 Clique</h3>
+        <p class="text-slate-400 text-xs leading-relaxed">Envie o orçamento pronto via WhatsApp em poucos segundos de forma organizada e limpa.</p>
+      </div>
+
+      <div class="glass-panel p-6 rounded-2xl border border-slate-800">
+        <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-2xl mb-5">
+          <i class="fa-solid fa-list-check"></i>
+        </div>
+        <h3 class="text-lg font-bold text-white mb-2">Gestão de Status</h3>
+        <p class="text-slate-400 text-xs leading-relaxed">Saiba exatamente quais orçamentos estão pendentes, quais foram aprovados e o que tem para receber.</p>
+      </div>
+
+      <div class="glass-panel p-6 rounded-2xl border border-slate-800">
+        <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-2xl mb-5">
+          <i class="fa-solid fa-user-gear"></i>
+        </div>
+        <h3 class="text-lg font-bold text-white mb-2">Sua Marca em Destaque</h3>
+        <p class="text-slate-400 text-xs leading-relaxed">Personalize propostas com o nome da sua empresa, logotipo e contatos para passar autoridade total.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. PARA QUEM É O SERVIFYPRO -->
+  <section class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-slate-800/60" id="para-quem">
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <h2 class="text-xs font-bold uppercase tracking-widest text-emerald-400 mb-2">Feito Sob Medida</h2>
+      <p class="text-3xl sm:text-4xl font-extrabold text-white">Ideal para Profissionais & Prestadores de Serviços</p>
+    </div>
+
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4 text-center">
+      <div class="glass-panel p-5 rounded-2xl border border-slate-800 flex flex-col items-center justify-center space-y-3">
+        <i class="fa-solid fa-bolt text-3xl text-emerald-400"></i>
+        <span class="text-xs font-bold text-slate-200">Eletricistas</span>
+      </div>
+      <div class="glass-panel p-5 rounded-2xl border border-slate-800 flex flex-col items-center justify-center space-y-3">
+        <i class="fa-solid fa-wrench text-3xl text-emerald-400"></i>
+        <span class="text-xs font-bold text-slate-200">Encanadores</span>
+      </div>
+      <div class="glass-panel p-5 rounded-2xl border border-slate-800 flex flex-col items-center justify-center space-y-3">
+        <i class="fa-solid fa-snowflake text-3xl text-emerald-400"></i>
+        <span class="text-xs font-bold text-slate-200">Técnicos de Ar</span>
+      </div>
+      <div class="glass-panel p-5 rounded-2xl border border-slate-800 flex flex-col items-center justify-center space-y-3">
+        <i class="fa-solid fa-hammer text-3xl text-emerald-400"></i>
+        <span class="text-xs font-bold text-slate-200">Marceneiros</span>
+      </div>
+      <div class="glass-panel p-5 rounded-2xl border border-slate-800 flex flex-col items-center justify-center space-y-3">
+        <i class="fa-solid fa-paint-roller text-3xl text-emerald-400"></i>
+        <span class="text-xs font-bold text-slate-200">Pintores</span>
+      </div>
+      <div class="glass-panel p-5 rounded-2xl border border-slate-800 flex flex-col items-center justify-center space-y-3">
+        <i class="fa-solid fa-toolbox text-3xl text-emerald-400"></i>
+        <span class="text-xs font-bold text-slate-200">Reformas Gerais</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. PROVA SOCIAL E DEPOIMENTOS -->
+  <section class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-slate-800/60" id="depoimentos">
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <h2 class="text-xs font-bold uppercase tracking-widest text-emerald-400 mb-2">Quem usa aprova</h2>
+      <p class="text-3xl sm:text-4xl font-extrabold text-white">O que dizem os prestadores que usam o ServifyPro</p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="glass-panel p-6 rounded-2xl border border-slate-800 flex flex-col justify-between">
+        <p class="text-slate-300 text-sm italic mb-6">"Antes eu mandava um texto qualquer no WhatsApp e os clientes achavam caro. Hoje eu envio o link do ServifyPro e o cliente aprova na hora!"</p>
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-emerald-500/20 text-emerald-400 font-bold flex items-center justify-center">RC</div>
+          <div>
+            <p class="text-sm font-bold text-white">Rodrigo Costa</p>
+            <p class="text-xs text-slate-400">Eletricista Residencial</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="glass-panel p-6 rounded-2xl border border-slate-800 flex flex-col justify-between">
+        <p class="text-slate-300 text-sm italic mb-6">"Facilitou demais a minha rotina. Faço os orçamentos no próprio celular na frente do cliente. Economizo tempo e fecho mais serviços."</p>
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-emerald-500/20 text-emerald-400 font-bold flex items-center justify-center">MS</div>
+          <div>
+            <p class="text-sm font-bold text-white">Marcelo Silva</p>
+            <p class="text-xs text-slate-400">Técnico em Refrigeração</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="glass-panel p-6 rounded-2xl border border-slate-800 flex flex-col justify-between">
+        <p class="text-slate-300 text-sm italic mb-6">"Ferramenta excelente! Passa uma imagem muito mais profissional do meu trabalho de marcenaria. Vale cada centavo."</p>
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-emerald-500/20 text-emerald-400 font-bold flex items-center justify-center">FA</div>
+          <div>
+            <p class="text-sm font-bold text-white">Fernando Alves</p>
+            <p class="text-xs text-slate-400">Marceneiro</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. SEÇÃO DE PREÇOS E OFERTA (ATUALIZADA) -->
+  <section class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-slate-800/60" id="planos">
+    <div class="text-center mb-16">
+      <h2 class="text-xs font-bold uppercase tracking-widest text-emerald-400 mb-2">Investimento Acessível</h2>
+      <h3 class="text-3xl sm:text-5xl font-black text-white mb-4">Escolha o Plano Ideal para o Seu Negócio</h3>
+      <p class="text-slate-400 max-w-xl mx-auto text-sm">Garantia incondicional de 7 dias em todos os planos.</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+      
+      <!-- Card Mensal -->
+      <div class="glass-panel rounded-3xl p-8 border border-slate-800 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h4 class="text-2xl font-bold text-white">Plano Mensal</h4>
+            <span class="text-xs font-semibold px-3 py-1 rounded-full bg-slate-800 text-slate-300">Sem Fidelidade</span>
+          </div>
+          <p class="text-slate-400 text-sm mb-6">Ideal para começar e testar a ferramenta no seu dia a dia.</p>
+          <div class="mb-6">
+            <span class="text-5xl font-black text-white">R$ 29,90</span>
+            <span class="text-slate-400">/mês</span>
+          </div>
+          <ul class="space-y-4 mb-8 text-slate-300 text-sm">
+            <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-emerald-400"></i> Orçamentos ilimitados</li>
+            <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-emerald-400"></i> Envio direto por WhatsApp</li>
+            <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-emerald-400"></i> Gestão de status de serviços</li>
+            <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-emerald-400"></i> Garantia incondicional de 7 dias</li>
+          </ul>
+        </div>
+        <a href="https://pay.kiwify.com.br/hDqJYpx" target="_blank" rel="noopener noreferrer" class="w-full bg-slate-800 hover:bg-slate-700 text-white font-bold py-4 rounded-xl transition-all duration-200 text-center block">
+          ASSINAR PLANO MENSAL
+        </a>
+      </div>
+
+      <!-- Card Anual PRO (Destaque Principal) -->
+      <div class="glass-panel rounded-3xl p-8 border-2 border-emerald-500 relative glow-emerald flex flex-col justify-between">
+        <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-emerald-gradient text-slate-950 font-black text-xs px-4 py-1.5 rounded-full uppercase tracking-wider">
+          MELHOR CUSTO-BENEFÍCIO (1º ANO)
+        </div>
+        <div>
+          <div class="flex items-center justify-between mb-4 mt-2">
+            <h4 class="text-2xl font-bold text-white">Plano Anual PRO</h4>
+            <span class="text-xs font-semibold px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-400">Recomendado</span>
+          </div>
+          <p class="text-slate-400 text-sm mb-4">Acesso completo por um ano com desconto exclusivo de lançamento.</p>
+          
+          <div class="mb-2">
+            <span class="text-slate-500 line-through text-sm">De R$ 719,76</span>
+            <div class="text-4xl font-black text-white">12x R$ 29,99</div>
+            <span class="text-emerald-400 font-semibold text-sm">ou R$ 290,00 à vista no 1º ano</span>
+          </div>
+          <p class="text-slate-500 text-xs mb-6">(Renovação posterior por 12x de R$ 40,34/ano)</p>
+
+          <ul class="space-y-4 mb-8 text-slate-300 text-sm">
+            <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-emerald-400"></i> Tudo do Plano Mensal</li>
+            <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-emerald-400"></i> Maior desconto no 1º ano</li>
+            <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-emerald-400"></i> Atualizações e novos recursos VIP</li>
+            <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-emerald-400"></i> Garantia incondicional de 7 dias</li>
+          </ul>
+        </div>
+        <a href="https://pay.kiwify.com.br/KCsUgKf" target="_blank" rel="noopener noreferrer" class="w-full bg-emerald-gradient hover:opacity-90 text-slate-950 font-black py-4 rounded-xl transition-all duration-200 text-center block shadow-lg">
+          GARANTIR PLANO ANUAL PRO
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 9. SEÇÃO DE GARANTIA INCONDICIONAL DE 7 DIAS -->
+  <section class="py-16 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
+    <div class="glass-panel border border-slate-800 rounded-3xl p-8 sm:p-10 flex flex-col sm:flex-row items-center gap-6">
+      <div class="w-20 h-20 shrink-0 bg-emerald-500/10 border border-emerald-500/30 rounded-full flex items-center justify-center text-emerald-400 text-3xl">
+        <i class="fa-solid fa-shield-halved"></i>
+      </div>
+      <div class="text-center sm:text-left">
+        <h3 class="text-xl font-bold text-white mb-2">Garantia Incondicional de 7 Dias</h3>
+        <p class="text-slate-300 text-sm leading-relaxed">
+          Teste o <strong>ServifyPro</strong> sem nenhum risco. Se por qualquer motivo você achar que o aplicativo não ajudou a aumentar o seu faturamento ou não facilitou o seu dia a dia, basta solicitar o reembolso na Kiwify dentro do prazo de 7 dias e devolveremos 100% do seu dinheiro.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10. SEÇÃO DE FAQ (SANFONA / ACCORDION) -->
+  <section class="py-20 px-4 sm:px-6 lg:px-8 max-w-3xl mx-auto border-t border-slate-800/60" id="faq">
+    <div class="text-center mb-16">
+      <h2 class="text-xs font-bold uppercase tracking-widest text-emerald-400 mb-2">Tire suas dúvidas</h2>
+      <h3 class="text-3xl font-extrabold text-white">Perguntas Frequentes</h3>
+    </div>
+
+    <div class="space-y-4">
+      <div class="glass-panel border border-slate-800 rounded-2xl overflow-hidden">
+        <button class="faq-btn w-full p-5 text-left font-bold text-white flex justify-between items-center focus:outline-none">
+          <span>Preciso instalar algo no meu computador?</span>
+          <i class="fa-solid fa-chevron-down text-emerald-400 transition-transform"></i>
+        </button>
+        <div class="faq-content hidden px-5 pb-5 text-slate-400 text-sm leading-relaxed">
+          Não! O ServifyPro é uma plataforma 100% online que funciona diretamente no navegador do seu celular Android, iPhone ou computador.
+        </div>
+      </div>
+
+      <div class="glass-panel border border-slate-800 rounded-2xl overflow-hidden">
+        <button class="faq-btn w-full p-5 text-left font-bold text-white flex justify-between items-center focus:outline-none">
+          <span>Como meu cliente recebe o orçamento?</span>
+          <i class="fa-solid fa-chevron-down text-emerald-400 transition-transform"></i>
+        </button>
+        <div class="faq-content hidden px-5 pb-5 text-slate-400 text-sm leading-relaxed">
+          O aplicativo gera um link profissional interativo que você envia diretamente no WhatsApp do seu cliente com apenas 1 clique.
+        </div>
+      </div>
+
+      <div class="glass-panel border border-slate-800 rounded-2xl overflow-hidden">
+        <button class="faq-btn w-full p-5 text-left font-bold text-white flex justify-between items-center focus:outline-none">
+          <span>Como funciona a garantia de 7 dias?</span>
+          <i class="fa-solid fa-chevron-down text-emerald-400 transition-transform"></i>
+        </button>
+        <div class="faq-content hidden px-5 pb-5 text-slate-400 text-sm leading-relaxed">
+          Após realizar a assinatura, você tem 7 dias inteiros para usar. Se não ficar satisfeito, a própria plataforma Kiwify realiza a devolução total do valor pago.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 11. FOOTER -->
+  <footer class="py-12 px-4 border-t border-slate-800/80 text-center text-slate-500 text-xs space-y-4">
+    <div class="flex items-center justify-center space-x-3 mb-2">
+      <div class="w-8 h-8 rounded-lg bg-emerald-gradient flex items-center justify-center text-slate-950 font-black text-sm">S</div>
+      <span class="text-lg font-black tracking-tight text-white">Servify<span class="text-emerald-400">Pro</span></span>
+    </div>
+    <p>© 2026 ServifyPro. Todos os direitos reservados.</p>
+    <div class="flex justify-center gap-6 text-slate-400">
+      <a href="#" class="hover:text-emerald-400 transition-colors">Termos de Uso</a>
+      <a href="#" class="hover:text-emerald-400 transition-colors">Política de Privacidade</a>
+    </div>
+  </footer>
+
+  <script>
+    // Accordion FAQ Script
+    document.querySelectorAll('.faq-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const content = btn.nextElementSibling;
+        const icon = btn.querySelector('i');
+        content.classList.toggle('hidden');
+        icon.classList.toggle('rotate-180');
+      });
+    });
+  </script>
+</body>
+</html>
